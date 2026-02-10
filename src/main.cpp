@@ -4,11 +4,11 @@
 #define NUM_LEDS 1
 #define DATA_PIN 48
 
-#define BOOTLOG(...)                 \
+#define LOG(...)                 \
     {                                \
         char buf[120];               \
         sprintf(buf, __VA_ARGS__);   \
-        Serial.print("##[BOOT]#\t"); \
+        Serial.print("[LOG] "); \
         Serial.println(buf);         \
     }
 
@@ -22,26 +22,18 @@ void setup()
 
 void loop()
 {
+    LOG("Total heap: %d", ESP.getHeapSize());
+    LOG("Free heap: %d", ESP.getFreeHeap());
+    LOG("Total PSRAM: %d", ESP.getPsramSize());
+    LOG("Free PSRAM: %d", ESP.getFreePsram());
+
     leds[0] = CRGB::Red;
     FastLED.show();
-    Serial.println("RED LED is ON");
+    LOG("RED LED is ON");
     delay(500);
-    leds[0] = CRGB::Yellow;
-    FastLED.show();
-    Serial.println("GREEN LED is ON");
-    delay(500);
+
     leds[0] = CRGB::Blue;
     FastLED.show();
-    Serial.println("BLUE LED is ON");
+    LOG("BLUE LED is ON");
     delay(500);
-    leds[0] = CRGB::Black;
-    FastLED.show();
-    Serial.println("LED's are OFF");
-
-    BOOTLOG("Total heap: %d", ESP.getHeapSize());
-    BOOTLOG("Free heap: %d", ESP.getFreeHeap());
-    BOOTLOG("Total PSRAM: %d", ESP.getPsramSize());
-    BOOTLOG("Free PSRAM: %d", ESP.getFreePsram());
-
-    delay(1500);
 }
