@@ -1,0 +1,31 @@
+# EditorConfig helps developers define and
+# maintain consistent coding styles between
+# different editors and IDEs
+
+# http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Code files
+[*.{cpp,h}]
+indent_size = 4
+curly_bracket_next_line = true
+indent_brace_style = Allman
+
+# Markdown files
+[*.md]
+indent_size = 4
+
+# JSON files
+[*.{json}]
+indent_size = 2
+
+
